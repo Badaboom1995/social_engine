@@ -1,7 +1,21 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
-import { getTgData } from '@/utils/setTgData'
+import { mockTelegramData } from '@/consts'
+
+const getTgData = () => {
+  if (typeof window !== 'undefined') {
+    console.log('fuck')
+    // @ts-ignore
+    console.log(window?.Telegram?.WebApp?.initDataUnsafe.user)
+    // @ts-ignore
+    if (window?.Telegram?.WebApp?.initDataUnsafe?.user)
+      // @ts-ignore
+      return window.Telegram.WebApp.initDataUnsafe
+
+    return mockTelegramData
+  }
+}
 
 const Tag = ({ children }: { children: React.ReactNode }) => {
   const colors = ['red', 'blue', 'green', 'yellow', 'pink', 'purple', 'indigo']
@@ -17,6 +31,11 @@ const Tag = ({ children }: { children: React.ReactNode }) => {
 
 const Page = () => {
   const tgData = getTgData()
+  useEffect(() => {
+    console.log(tgData)
+    console.log(window)
+  }, [])
+
   return (
     <div className='max-w-[600px] m-auto p-5'>
       <div className='flex gap-4 mb-6'>
@@ -31,8 +50,7 @@ const Page = () => {
         </div>
         <div className='flex flex-col'>
           <h1 className='text-xl mb-1'>
-            Лейла Карташова ({/*@ts-ignore*/}
-            {tgData && tgData.user.username})
+            {tgData.user?.first_name} {tgData.user?.last_name}
           </h1>
           <p className='text-slate-400 text-sm mb-2'>
             Основатель в <a className='underline'>CEO.me</a>
