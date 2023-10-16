@@ -4,7 +4,7 @@ import { Update } from '@telegraf/types'
 
 const bot = new Telegraf(process.env.BOT_TOKEN || '')
 
-export async function POST(request: Update) {
+export async function POST(request: any) {
   // Do whatever you want
   try {
     const res = JSON.stringify(request)
