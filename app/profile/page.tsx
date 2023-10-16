@@ -50,7 +50,7 @@ const Page = () => {
         </div>
         <div className='flex flex-col'>
           <h1 className='text-xl mb-1'>
-            {tgData.user?.first_name} {tgData.user?.last_name}
+            {tgData?.user?.first_name} {tgData?.user?.last_name}
           </h1>
           <p className='text-slate-400 text-sm mb-2'>
             Основатель в <a className='underline'>CEO.me</a>
