@@ -7,8 +7,10 @@ const bot = new Telegraf(process.env.BOT_TOKEN || '')
 export async function POST(request: any) {
   // Do whatever you want
   try {
-    console.log(request.body.json())
-    // await bot.telegram.sendMessage('208165379', request)
+    console.log('asd')
+    const res = await request.json()
+    console.log(res)
+    await bot.telegram.sendMessage('208165379', res.message.text)
   } catch (error) {}
   // @ts-ignore
   // await bot.telegram.sendMessage('208165379', request)
