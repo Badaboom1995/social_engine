@@ -1,8 +1,9 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
+import { getTgData } from '@/utils/setTgData'
 
 const Tag = ({ children }: { children: React.ReactNode }) => {
-  // random color
   const colors = ['red', 'blue', 'green', 'yellow', 'pink', 'purple', 'indigo']
   const randomColor = colors[Math.floor(Math.random() * colors.length)]
   const colorClass = `bg-${randomColor}-100 text-${randomColor}-800`
@@ -27,7 +28,10 @@ const Page = () => {
           />
         </div>
         <div className='flex flex-col'>
-          <h1 className='text-xl mb-1'>Лейла Карташова</h1>
+          <h1 className='text-xl mb-1'>
+            Лейла Карташова ({/*@ts-ignore*/}
+            {getTgData().user.first_name})
+          </h1>
           <p className='text-slate-400 text-sm mb-2'>
             Основатель в <a className='underline'>CEO.me</a>
           </p>
