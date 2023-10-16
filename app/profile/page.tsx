@@ -7,6 +7,7 @@ const Tag = ({ children }: { children: React.ReactNode }) => {
   const colors = ['red', 'blue', 'green', 'yellow', 'pink', 'purple', 'indigo']
   const randomColor = colors[Math.floor(Math.random() * colors.length)]
   const colorClass = `bg-${randomColor}-100 text-${randomColor}-800`
+
   return (
     <span className={`${colorClass} rounded-lg py-1 px-2 text-sm`}>
       {children}
@@ -15,6 +16,7 @@ const Tag = ({ children }: { children: React.ReactNode }) => {
 }
 
 const Page = () => {
+  const tgData = getTgData()
   return (
     <div className='max-w-[600px] m-auto p-5'>
       <div className='flex gap-4 mb-6'>
@@ -30,7 +32,7 @@ const Page = () => {
         <div className='flex flex-col'>
           <h1 className='text-xl mb-1'>
             Лейла Карташова ({/*@ts-ignore*/}
-            {getTgData().user.username})
+            {tgData && tgData.user.username})
           </h1>
           <p className='text-slate-400 text-sm mb-2'>
             Основатель в <a className='underline'>CEO.me</a>
