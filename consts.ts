@@ -4,7 +4,7 @@ export const mockTelegramData = {
     id: 101010,
     first_name: 'John',
     last_name: 'Doe',
-    username: '@badavoo',
+    username: '@kostya',
     language_code: 'en',
   },
   receiver: {

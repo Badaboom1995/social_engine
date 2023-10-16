@@ -30,7 +30,7 @@ const Page = () => {
         <div className='flex flex-col'>
           <h1 className='text-xl mb-1'>
             Лейла Карташова ({/*@ts-ignore*/}
-            {getTgData().user.first_name})
+            {getTgData().user.username})
           </h1>
           <p className='text-slate-400 text-sm mb-2'>
             Основатель в <a className='underline'>CEO.me</a>
