@@ -14,29 +14,29 @@ export async function POST(request: any) {
   try {
     const res = await request.json()
     const message = res.message.text
-    if (message === '/start') {
-    }
-    await bot.telegram.sendMessage(208165379, helloMessage)
-    bot.telegram
-      .sendPhoto(
-        208165379,
-        'https://res.cloudinary.com/dgpgmk0w7/image/upload/v1688229482/static/profileExample_t6woiu.png',
-        {
-          reply_markup: {
-            inline_keyboard: [
-              [
-                {
-                  text: 'Создать профиль',
-                  web_app: {
-                    url: 'https://localhost:3000/profile?userId=1',
+    if (message === '/match') {
+      await bot.telegram.sendMessage(208165379, helloMessage)
+      bot.telegram
+        .sendPhoto(
+          208165379,
+          'https://res.cloudinary.com/dgpgmk0w7/image/upload/v1688229482/static/profileExample_t6woiu.png',
+          {
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  {
+                    text: 'Создать профиль',
+                    web_app: {
+                      url: 'https://social-engine.vercel.app/profile?userId=208165379',
+                    },
                   },
-                },
+                ],
               ],
-            ],
+            },
           },
-        },
-      )
-      .catch(err => console.log(err))
+        )
+        .catch(err => console.log(err))
+    }
   } catch (error) {}
   return NextResponse.json({ request }, { status: 200 })
 }
