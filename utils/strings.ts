@@ -6,6 +6,6 @@ export const getGroupsHashtags = (groups: any) =>
 
 export const getNames = (str: string, dict: Record<string, any>) => {
   return str
-    .split(',')
+    ?.split(',')
     .map(item => dict.find((dictItem: any) => dictItem.id === item)?.name)
 }
