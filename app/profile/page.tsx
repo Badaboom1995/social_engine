@@ -39,7 +39,10 @@ const Page = async ({ searchParams }: any) => {
           <p className='text-slate-400 text-sm mb-2 grow'>
             {getGroupsHashtags(user?.groups)}
           </p>
-          <a className='bg-slate-800 text-white text-center rounded p-1'>
+          <a
+            className='bg-slate-800 text-white text-center rounded p-1'
+            href={`https://t.me/${user?.telegram}`}
+          >
             Написать
           </a>
           {/*<p className=''>Чангу (Семеньяк)</p>*/}
