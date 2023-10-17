@@ -57,13 +57,13 @@ const Page = async ({ searchParams }: any) => {
       <p className='text-md mb-4'>{user?.requests}</p>
       <h2 className='text-2xl font-medium mb-4'>Навыки</h2>
       <div className='flex flex-wrap gap-3 mb-4'>
-        {getNames(user?.skills, skillsDict).map((item: any) => (
+        {getNames(user?.skills, skillsDict)?.map((item: any) => (
           <Tag key={item}>{item}</Tag>
         ))}
       </div>
       <h2 className='text-xl font-medium mb-4'>Хобби</h2>
       <div className='flex flex-wrap gap-3 mb-2'>
-        {getNames(user?.hobbies, hobbiesDict).map((item: any) => (
+        {getNames(user?.hobbies, hobbiesDict)?.map((item: any) => (
           <Tag key={item}>{item}</Tag>
         ))}
       </div>

@@ -26,10 +26,9 @@ export async function POST(request: any) {
                 [
                   {
                     text: 'Создать профиль',
-                    url: 'https://social-engine.vercel.app/profile?userId=208165379',
-                    // web_app: {
-                    //   url: 'https://social-engine.vercel.app/profile?userId=208165379',
-                    // },
+                    web_app: {
+                      url: 'https://social-engine.vercel.app/profile?userID=208165379',
+                    },
                   },
                 ],
               ],
