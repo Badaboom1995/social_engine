@@ -1,7 +1,7 @@
-'use client'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
+import Head from 'next/head'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,11 +17,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <Script
-        src='https://telegram.org/js/telegram-web-app.js'
-        strategy='beforeInteractive'
-      />
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Script
+          src='https://telegram.org/js/telegram-web-app.js'
+          strategy='beforeInteractive'
+        />
+        {children}
+      </body>
     </html>
   )
 }

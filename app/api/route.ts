@@ -28,7 +28,7 @@ export async function POST(request: any) {
                 {
                   text: 'Создать профиль',
                   web_app: {
-                    url: 'https://localhost:3000',
+                    url: 'https://localhost:3000/profile?userId=1',
                   },
                 },
               ],
