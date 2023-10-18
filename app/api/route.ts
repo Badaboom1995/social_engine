@@ -57,14 +57,3 @@ export async function POST(request: any) {
   } catch (error) {}
   return NextResponse.json({ request }, { status: 200 })
 }
-
-export async function GET(request: NextRequest) {
-  try {
-    console.log(request.body)
-    // await bot.telegram.sendMessage('208165379', request)
-  } catch (error) {}
-  // @ts-ignore
-  // await bot.telegram.sendMessage('208165379', request)
-  // console.log(request)
-  return NextResponse.json({ request }, { status: 200 })
-}

@@ -68,7 +68,6 @@ const Page = async ({ searchParams }: any) => {
           <Tag key={item}>{item}</Tag>
         ))}
       </div>
-      <div></div>
       <AlreadyMetButton />
     </div>
   )

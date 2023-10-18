@@ -1,20 +1,8 @@
 import { ExtendedUserType } from '../types'
-import { Telegraf } from 'telegraf'
 import { findPairs } from './findPairs'
 import { getInitData } from './getInitData'
 import { getSortedUsers } from './getSortedUsers'
 import { sendPairs } from '@/utils/sendPairs'
-// const { sendPairs } = require('../bot/sendPairs')
-// require('dotenv').config()
-
-const bot = new Telegraf(process.env['DEV_TOKEN'] || '')
-let isTest = false
-
-process.argv.slice(2).forEach(function (val) {
-  if (val === '--test') {
-    isTest = true
-  }
-})
 
 export async function runMatching() {
   const initData = await getInitData()
@@ -44,31 +32,6 @@ export async function runMatching() {
   } else {
     console.log('All clear, ready to send')
     await sendPairs(testedPairs)
-
     return testedPairs
   }
-}
-
-if (isTest) {
-  bot.telegram.sendMessage(208165379, 'Новая пара!', {
-    reply_markup: {
-      inline_keyboard: [
-        [
-          {
-            text: 'Написать собеседнику',
-            url: `https://t.me/badavoo`,
-          },
-          {
-            text: 'Просмотреть профиль',
-            web_app: { url: `https://social-engine.vercel.app/profile` },
-          },
-        ],
-      ],
-    },
-  })
-  console.log('relax its just a test')
-} else {
-  runMatching().then(() => {
-    console.log('done')
-  })
 }
