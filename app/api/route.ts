@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from 'next/server'
 import { Telegraf } from 'telegraf'
 
 const bot = new Telegraf(process.env.BOT_TOKEN || '')
+
 const helloMessage = `Привет!👋
 Я нетворкинг бот сообщества minders для встреч один на один. Мы объединяем фаундеров, инвесторов, IT профессионалов и просто хороших людей на Бали 🤖
 
@@ -14,7 +15,7 @@ export async function POST(request: any) {
   try {
     const res = await request.json()
     const message = res.message.text
-    if (message === '/match') {
+    if (message === '/start') {
       await bot.telegram.sendMessage(208165379, helloMessage)
       bot.telegram
         .sendPhoto(
@@ -27,7 +28,7 @@ export async function POST(request: any) {
                   {
                     text: 'Создать профиль',
                     web_app: {
-                      url: 'https://social-engine.vercel.app/profile?userID=208165379',
+                      url: 'https://social-engine.vercel.app/profile?chatID=20153016',
                     },
                   },
                 ],
@@ -36,6 +37,22 @@ export async function POST(request: any) {
           },
         )
         .catch(err => console.log(err))
+    }
+    if (message === '/match_weekly') {
+      await bot.telegram.sendMessage(208165379, 'Новая пара!', {
+        reply_markup: {
+          inline_keyboard: [
+            [
+              {
+                text: 'Профиль',
+                web_app: {
+                  url: 'https://social-engine.vercel.app/profile?chatID=20153016',
+                },
+              },
+            ],
+          ],
+        },
+      })
     }
   } catch (error) {}
   return NextResponse.json({ request }, { status: 200 })

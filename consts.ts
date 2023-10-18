@@ -27,7 +27,7 @@ export const mockTelegramData = {
   auth_date: 1673616000, // This is just a sample UNIX timestamp.
   hash: 'f0e2b49f9f1d104ada8f5f960ecdf29b', // A fictitious hash value.
 }
-
+export const badavooChatId = 208165379
 export const skillsDict = [
   { id: 'analytics', name: '📊 Аналитика' },
   { id: 'blockchain', name: '🔗 Блокчейн' },

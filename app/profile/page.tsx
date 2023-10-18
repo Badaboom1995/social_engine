@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { skillsDict, hobbiesDict } from '@/consts'
 import { getGroupsHashtags, getNames } from '@/utils/strings'
 import { userService } from '@/services/user'
+import AlreadyMetButton from '@/components/AlreadyMetButton'
 
 const Tag = ({ children }: { children: React.ReactNode }) => {
   const colors = ['red', 'blue', 'green', 'yellow', 'pink', 'purple', 'indigo']
@@ -23,7 +24,7 @@ const Page = async ({ searchParams }: any) => {
   const user = res?.data
 
   return (
-    <div className='max-w-[600px] m-auto p-5'>
+    <div className='max-w-[600px] m-auto p-5 pb-14'>
       <div className='flex gap-4 mb-6'>
         <div className='w-[120px] h-[120px] overflow-hidden rounded-xl'>
           <Image
@@ -67,6 +68,8 @@ const Page = async ({ searchParams }: any) => {
           <Tag key={item}>{item}</Tag>
         ))}
       </div>
+      <div></div>
+      <AlreadyMetButton />
     </div>
   )
 }
