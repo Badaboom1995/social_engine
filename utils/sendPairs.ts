@@ -9,6 +9,7 @@ function wait(ms: number) {
 }
 
 export const sendPairs = async (pairs: BestPairType[]) => {
+  await bot.telegram.sendMessage(badavooChatId, 'Start sending pairs')
   for (const pair of pairs) {
     console.log('Sending pair...', pair.user.telegram, pair.partner.telegram)
     await bot.telegram.sendMessage(

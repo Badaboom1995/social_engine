@@ -32,6 +32,6 @@ export async function runMatching() {
   } else {
     console.log('All clear, ready to send')
     await sendPairs(testedPairs)
-    return testedPairs
+    return { done: true, testedPairs }
   }
 }
