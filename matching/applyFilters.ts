@@ -1,12 +1,13 @@
 import { ExtendedUserType, FindPairProps } from '../types'
 // const { filterUsers } = require('./filterUsers');
 
-const pairedBefore = (props: FindPairProps, targetUser: ExtendedUserType) =>
-  props.oldPairs.some(
+const pairedBefore = (props: FindPairProps, targetUser: ExtendedUserType) => {
+  return props.oldPairs.some(
     oldPair =>
       oldPair.includes(<string>targetUser.telegram) &&
       oldPair.includes(<string>props.user.telegram),
   )
+}
 
 const justPaired = (props: FindPairProps, targetUser: ExtendedUserType) =>
   props.pairedUsers.includes(<string>targetUser.telegram) ||

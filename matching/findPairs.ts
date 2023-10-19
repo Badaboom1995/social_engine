@@ -6,6 +6,7 @@ import {
 } from '../types'
 // const { findPair } = require('./findPersonalPair')
 import { findPair } from './findPersonalPair'
+import { supabase } from '@/supabase'
 
 // TODO:Filters currently not used
 // TODO:In future we can use them for different cases and make different filters set for different users
@@ -31,16 +32,22 @@ import { findPair } from './findPersonalPair'
 
 // todo/NOTE: "Old pairs" are pairs from previous weeks
 // todo/NOTE: "Paired users" are users who have already been paired in this algorithm run
-export function findPairs(props: {
+export async function findPairs(props: {
   sortedUsers: ExtendedUserType[]
   oldPairs: CleanPairType[]
 }) {
-  const { sortedUsers, oldPairs } = props
+  const { sortedUsers } = props
   const pairedUsers: string[] = []
   const pairs: BestPairType[] = []
-  sortedUsers.forEach(user => {
+  for (const user of sortedUsers) {
     // Don't start matching for users who have already been paired in this algorithm run
-    if (user.telegram && pairedUsers.includes(user.telegram)) return
+    if (user.telegram && pairedUsers.includes(user.telegram)) continue
+    const userPairs = await supabase
+      .from('Pairs')
+      .select('*')
+      .or(`user.eq.${user.telegram},partner.eq.${user.telegram}`)
+    const oldPairs: CleanPairType[] =
+      userPairs?.data?.map(pair => [pair.user, pair.partner]) || []
     const pair = findPair({
       user,
       sortedUsers,
@@ -49,6 +56,18 @@ export function findPairs(props: {
       // filters,
     })
     if (pair) pairs.push(pair)
-  })
+  }
+  // sortedUsers.forEach(user => {
+  //   // Don't start matching for users who have already been paired in this algorithm run
+  //   if (user.telegram && pairedUsers.includes(user.telegram)) return
+  //   const pair = findPair({
+  //     user,
+  //     sortedUsers,
+  //     pairedUsers,
+  //     oldPairs,
+  //     // filters,
+  //   })
+  //   if (pair) pairs.push(pair)
+  // })
   return pairs
 }

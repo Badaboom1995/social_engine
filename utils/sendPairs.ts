@@ -1,6 +1,7 @@
 import { bot } from '@/bot'
 import { BestPairType } from '@/types'
 import { badavooChatId } from '@/consts'
+import { supabase } from '@/supabase'
 
 function wait(ms: number) {
   return new Promise(resolve => {
@@ -12,6 +13,12 @@ export const sendPairs = async (pairs: BestPairType[]) => {
   await bot.telegram.sendMessage(badavooChatId, 'Start sending pairs')
   for (const pair of pairs) {
     console.log('Sending pair...', pair.user.telegram, pair.partner.telegram)
+    // await supabase.from('Pairs').insert([
+    //   {
+    //     user: pair.user.telegram,
+    //     partner: pair.partner.telegram,
+    //   },
+    // ])
     await bot.telegram.sendMessage(
       badavooChatId,
       `Новая пара! @${pair.partner.telegram}`,
@@ -49,6 +56,5 @@ export const sendPairs = async (pairs: BestPairType[]) => {
         },
       },
     )
-    await wait(300)
   }
 }

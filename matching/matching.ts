@@ -14,7 +14,7 @@ export async function runMatching() {
   const { users, pairs: oldPairs } = initData
   const cleanUsers = users.filter((user: ExtendedUserType) => user.telegram)
   const sortedUsers = getSortedUsers(cleanUsers)
-  const newPairs = findPairs({ sortedUsers, oldPairs })
+  const newPairs = await findPairs({ sortedUsers, oldPairs })
 
   const testedPairs = newPairs.map((pair: any) => {
     const beenPaired = oldPairs.some(

@@ -6,6 +6,8 @@ import { ExtendedUserType, CleanPairType } from '@/types'
 import { getSortedUsers } from '@/matching/getSortedUsers'
 import { getInitData } from '@/matching/getInitData'
 import { findPair } from '@/matching/findPersonalPair'
+import { bot } from '@/bot'
+import { badavooChatId } from '@/consts'
 
 const AlreadyMetButton = () => {
   const [tgUser, setTgUser] = useState<any>(null)
@@ -78,11 +80,21 @@ const AlreadyMetButton = () => {
           partner: pair?.partner?.telegram,
         },
       ])
-
+      await bot.telegram.sendMessage(208165379, 'Новая пара!', {
+        reply_markup: {
+          inline_keyboard: [
+            [
+              {
+                text: 'Профиль',
+                web_app: {
+                  url: `https://social-engine.vercel.app/profile?chatID=${pair?.partner?.chat_id}`,
+                },
+              },
+            ],
+          ],
+        },
+      })
       router.push(`/profile?chatID=${pair?.partner?.chat_id}`)
-
-      console.log('new pair', pair)
-      console.log('old pairs', cleanPairs)
       setLoading(false)
     } catch (error) {
       setLoading(false)

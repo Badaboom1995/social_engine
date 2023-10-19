@@ -48,6 +48,7 @@ export function findPair(props: FindPairProps): BestPairType | null {
   let bestMatch: BestPairType
 
   const filteredResponse = applyFilters(sortedUsers, props)
+  // console.log(filteredResponse)
   if (!filteredResponse.users.length) return null
 
   bestMatch = getBestMatch(props, filteredResponse.users)
