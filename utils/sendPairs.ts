@@ -14,7 +14,7 @@ export const sendPairs = async (pairs: BestPairType[]) => {
     console.log('Sending pair...', pair.user.telegram, pair.partner.telegram)
     await bot.telegram.sendMessage(
       badavooChatId,
-      `$Новая пара! @${pair.partner.telegram}`,
+      `Новая пара! @${pair.partner.telegram}`,
       {
         reply_markup: {
           inline_keyboard: [
