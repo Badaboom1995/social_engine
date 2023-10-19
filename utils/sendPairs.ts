@@ -12,15 +12,21 @@ function wait(ms: number) {
 export const sendPairs = async (pairs: BestPairType[]) => {
   await bot.telegram.sendMessage(badavooChatId, 'Start sending pairs')
   for (const pair of pairs) {
-    console.log('Sending pair...', pair.user.telegram, pair.partner.telegram)
-    // await supabase.from('Pairs').insert([
-    //   {
-    //     user: pair.user.telegram,
-    //     partner: pair.partner.telegram,
-    //   },
-    // ])
+    if (!pair.user.chat_id || !pair.partner.chat_id) {
+      await bot.telegram.sendMessage(
+        badavooChatId,
+        `Error: ${pair.user.telegram} ${pair.partner.telegram}`,
+      )
+      continue
+    }
+    await supabase.from('Pairs').insert([
+      {
+        user: pair.user.telegram,
+        partner: pair.partner.telegram,
+      },
+    ])
     await bot.telegram.sendMessage(
-      badavooChatId,
+      pair.user.chat_id,
       `Новая пара! @${pair.partner.telegram}`,
       {
         reply_markup: {
@@ -39,7 +45,7 @@ export const sendPairs = async (pairs: BestPairType[]) => {
     )
     await wait(300)
     await bot.telegram.sendMessage(
-      badavooChatId,
+      pair.partner.chat_id,
       `Новая пара! @${pair.user.telegram}`,
       {
         reply_markup: {
@@ -55,6 +61,10 @@ export const sendPairs = async (pairs: BestPairType[]) => {
           ],
         },
       },
+    )
+    await bot.telegram.sendMessage(
+      badavooChatId,
+      `Sent: ${pair.user.telegram} ${pair.partner.telegram}`,
     )
   }
 }

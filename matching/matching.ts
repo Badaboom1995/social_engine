@@ -7,7 +7,6 @@ import { sendPairs } from '@/utils/sendPairs'
 export async function runMatching() {
   const initData = await getInitData()
   if (!initData) {
-    console.log('No data, should be some error')
     return
   }
   // IMPORTANT: Users will be returned joined with their requests

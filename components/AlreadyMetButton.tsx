@@ -6,7 +6,7 @@ import { ExtendedUserType, CleanPairType } from '@/types'
 import { getSortedUsers } from '@/matching/getSortedUsers'
 import { getInitData } from '@/matching/getInitData'
 import { findPair } from '@/matching/findPersonalPair'
-import { badavooChatId } from '@/consts'
+import { telegram } from '@/services/telegram'
 
 const AlreadyMetButton = () => {
   const [tgUser, setTgUser] = useState<any>(null)
@@ -79,6 +79,17 @@ const AlreadyMetButton = () => {
           partner: pair?.partner?.telegram,
         },
       ])
+      if (
+        pair?.user?.chat_id &&
+        pair?.partner?.chat_id &&
+        pair?.partner?.telegram
+      ) {
+        await telegram.sendMessage(
+          tgUser.id,
+          pair?.partner.chat_id,
+          pair?.partner?.telegram,
+        )
+      }
       router.push(`/profile?chatID=${pair?.partner?.chat_id}`)
       setLoading(false)
     } catch (error) {
