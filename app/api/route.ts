@@ -1,4 +1,4 @@
-import { NextResponse, NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 import { Telegraf } from 'telegraf'
 
 const bot = new Telegraf(process.env.BOT_TOKEN || '')
