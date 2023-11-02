@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server'
 import { Telegraf } from 'telegraf'
+import { saveChatId } from '@/utils/saveChatId'
+import { badavooChatId } from '@/consts'
 
 const bot = new Telegraf(process.env.BOT_TOKEN || '')
 
@@ -15,12 +17,21 @@ export async function POST(request: any) {
   try {
     const res = await request.json()
     const message = res.message.text
-    await bot.telegram.sendMessage(208165379, 'not start')
+
     if (message === '/start') {
-      await bot.telegram.sendMessage(208165379, helloMessage)
+      const chatId = res.message.from.id
+      await saveChatId({
+        chatId,
+        username: res.message.from.username,
+      })
+      await bot.telegram.sendMessage(
+        badavooChatId,
+        `bot started by ${res.message.from.username}`,
+      )
+      await bot.telegram.sendMessage(chatId, helloMessage)
       bot.telegram
         .sendPhoto(
-          208165379,
+          chatId,
           'https://res.cloudinary.com/dgpgmk0w7/image/upload/v1688229482/static/profileExample_t6woiu.png',
           {
             reply_markup: {

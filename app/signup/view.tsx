@@ -138,6 +138,9 @@ const Signup = () => {
             className='w-full p-2 rounded bg-gradient-to-r from-green-500 to-cyan-500 text-center text-white'
             type='submit'
             disabled={isLoading}
+            onClick={() => {
+              console.log()
+            }}
           >
             {isLoading ? 'Loading...' : 'Submit'}
           </button>
