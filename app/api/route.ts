@@ -11,10 +11,11 @@ const helloMessage = `Привет!👋
 Чтобы принять участие во встречах, нужно заполнить анкету.💡
 Если у меня уже есть какие-то данные о тебе, я пропущу соответствующие вопросы.`
 
-export async function GET(request: any) {
+export async function POST(request: any) {
   try {
     const res = await request.json()
     const message = res.message.text
+    await bot.telegram.sendMessage(208165379, 'not start')
     if (message === '/start') {
       await bot.telegram.sendMessage(208165379, helloMessage)
       bot.telegram
@@ -39,8 +40,5 @@ export async function GET(request: any) {
         .catch(err => console.log(err))
     }
   } catch (error) {}
-}
-
-export async function POST(request: any) {
   return NextResponse.json({ request }, { status: 200 })
 }
