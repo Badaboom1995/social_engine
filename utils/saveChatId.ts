@@ -12,12 +12,17 @@ export const saveChatId = async ({
     .from('Users')
     .select('chat_id')
     .eq('chat_id', chatId)
+    .single()
+
+  console.log('user', user, noUser)
   if (user) {
     const { error } = await supabase
       .from('Users')
       .update({ chat_id: chatId, telegram: username })
       .eq('chat_id', chatId)
   } else {
-    supabase.from('Users').insert({ chat_id: chatId, telegram: username })
+    console.log('inserting', chatId, username)
+    await supabase.from('Users').insert({ chat_id: chatId, telegram: username })
+    console.log('done')
   }
 }
