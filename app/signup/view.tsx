@@ -139,7 +139,8 @@ const Signup = () => {
             type='submit'
             disabled={isLoading}
             onClick={() => {
-              console.log()
+              // @ts-ignore
+              window.Telegram.WebApp.close()
             }}
           >
             {isLoading ? 'Loading...' : 'Submit'}
