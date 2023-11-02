@@ -11,7 +11,7 @@ const helloMessage = `Привет!👋
 Чтобы принять участие во встречах, нужно заполнить анкету.💡
 Если у меня уже есть какие-то данные о тебе, я пропущу соответствующие вопросы.`
 
-export async function POST(request: any) {
+export async function GET(request: any) {
   try {
     const res = await request.json()
     const message = res.message.text
@@ -28,7 +28,7 @@ export async function POST(request: any) {
                   {
                     text: 'Создать профиль',
                     web_app: {
-                      url: 'https://social-engine.vercel.app/profile?chatID=20153016',
+                      url: 'https://social-engine.vercel.app/signup',
                     },
                   },
                 ],
@@ -38,22 +38,9 @@ export async function POST(request: any) {
         )
         .catch(err => console.log(err))
     }
-    if (message === '/match_weekly') {
-      await bot.telegram.sendMessage(208165379, 'Новая пара!', {
-        reply_markup: {
-          inline_keyboard: [
-            [
-              {
-                text: 'Профиль',
-                web_app: {
-                  url: 'https://social-engine.vercel.app/profile?chatID=20153016',
-                },
-              },
-            ],
-          ],
-        },
-      })
-    }
   } catch (error) {}
+}
+
+export async function POST(request: any) {
   return NextResponse.json({ request }, { status: 200 })
 }

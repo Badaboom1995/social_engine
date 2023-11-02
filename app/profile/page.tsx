@@ -46,7 +46,6 @@ const Page = async ({ searchParams }: any) => {
           >
             Написать
           </a>
-          {/*<p className=''>Чангу (Семеньяк)</p>*/}
         </div>
       </div>
       <p className='border border-slate-500 rounded-xl p-4 pl-10 -ml-10 mb-4 text-md'>

@@ -103,6 +103,7 @@ const AlreadyMetButton = () => {
     // @ts-ignore
     console.log(window?.Telegram?.WebApp?.initDataUnsafe?.user)
   }, [])
+
   if (isLoading) {
     return (
       <div className='fixed bottom-0 left-0 flex justify-center p-2 w-full text-center gap-2 bg-slate-800 text-white'>
