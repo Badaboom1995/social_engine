@@ -138,10 +138,6 @@ const Signup = () => {
             className='w-full p-2 rounded bg-gradient-to-r from-green-500 to-cyan-500 text-center text-white'
             type='submit'
             disabled={isLoading}
-            onClick={() => {
-              // @ts-ignore
-              window.Telegram.WebApp.close()
-            }}
           >
             {isLoading ? 'Loading...' : 'Submit'}
           </button>

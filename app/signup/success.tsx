@@ -22,7 +22,13 @@ const Success = () => {
         В понедельник мы пришлем подобранного специально для тебя участника.
       </p>
       <p> Хороших встреч! ☕️</p>
-      <button className='fixed bottom-0 left-0 w-full bg-gradient-to-r from-green-500 to-cyan-500 text-center text-white p-2 px-4'>
+      <button
+        onClick={() => {
+          // @ts-ignore
+          window.Telegram.WebApp.close()
+        }}
+        className='fixed bottom-0 left-0 w-full bg-gradient-to-r from-green-500 to-cyan-500 text-center text-white p-2 px-4'
+      >
         Закрыть
       </button>
     </div>
