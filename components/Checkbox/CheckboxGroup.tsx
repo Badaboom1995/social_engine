@@ -17,11 +17,13 @@ const CheckboxGroup = ({
   const { setValue, watch, register } = useFormContext()
   const groupValue = watch(groupName)
   const toggleTag = (value: string) => {
-    console.log(groupValue.length)
     if (groupValue && groupValue?.includes(value)) {
       setValue(groupName, groupValue?.filter((item: string) => item !== value))
     } else {
-      if (max && groupValue.length > max) return
+      if (max === 1) {
+        setValue(groupName, [value])
+      }
+      if (max && groupValue?.length >= max) return
       setValue(groupName, [...groupValue, value])
     }
   }
@@ -33,7 +35,7 @@ const CheckboxGroup = ({
 
   return (
     <div className='flex flex-wrap gap-2 py-2'>
-      <p className=' text-[16px] font-normal mb-2'>{groupLabel}</p>
+      <p className='w-full text-[16px] font-normal mb-2'>{groupLabel}</p>
       {options.map(option => (
         <button
           key={option.value}

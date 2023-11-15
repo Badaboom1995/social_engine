@@ -13,7 +13,6 @@ import { v4 as uuid } from 'uuid'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useRouter } from 'next/navigation'
-import Success from './success'
 
 const options = [
   { label: 'Инвестор', value: 'Я инвестор' },
@@ -21,13 +20,13 @@ const options = [
   { label: 'Специалист', value: 'Я специалист' },
   { label: 'Творческая личность', value: 'Я творческая личность' },
 ]
+
 const Title = ({ children }: any) => <p className=' text-[16px]'>{children}</p>
 const Signup = () => {
+  const router = useRouter()
   const methods = useForm()
   const user = useUser()
-  const router = useRouter()
   const [isLoading, setLoading] = useState(false)
-  const [isSuccess, setSuccess] = useState(false)
 
   useEffect(() => {
     if (!user) return
@@ -72,7 +71,7 @@ const Signup = () => {
       .eq('chat_id', user.id)
 
     setLoading(false)
-    setSuccess(true)
+    router.push('/request')
   }
   const skills = skillsDict.map(skill => {
     return { label: skill.name, value: skill.id }
@@ -80,7 +79,7 @@ const Signup = () => {
   const hobbies = hobbiesDict.map(hobby => {
     return { label: hobby.name, value: hobby.id }
   })
-  if (isSuccess) return <Success />
+
   return (
     <div className='p-4'>
       <p className='mb-8 text-[24px]'>Заполни анкету</p>
@@ -139,7 +138,7 @@ const Signup = () => {
             type='submit'
             disabled={isLoading}
           >
-            {isLoading ? 'Loading...' : 'Submit'}
+            {isLoading ? 'Загрузка...' : 'Дальше'}
           </button>
         </form>
       </FormProvider>

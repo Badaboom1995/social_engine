@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 const Success = () => {
   return (
@@ -21,7 +22,13 @@ const Success = () => {
       <p className='mb-4'>
         В понедельник мы пришлем подобранного специально для тебя участника.
       </p>
-      <p> Хороших встреч! ☕️</p>
+      <p className='mb-4'> Хороших встреч! ☕️</p>
+      <Image
+        src='https://res.cloudinary.com/dgpgmk0w7/image/upload/v1688229482/static/beforeMeenting_oalwna.png'
+        alt='before meeting'
+        width={390}
+        height={686}
+      />
       <button
         onClick={() => {
           // @ts-ignore
