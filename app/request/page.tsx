@@ -74,7 +74,7 @@ const RequestForm = () => {
 
   if (isSuccess) return <Success />
   return (
-    <div className='p-4 pb-10'>
+    <div className='p-4 pb-[200px]'>
       <p className='mb-8 text-[24px]'>Заполните запрос</p>
       <ToastContainer />
       <FormProvider {...methods}>
